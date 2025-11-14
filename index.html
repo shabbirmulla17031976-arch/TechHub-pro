@@ -16,6 +16,7 @@
         .bg-light { background-color: #f8f9fa !important; }
         .product-card { border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s; }
         .product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 20px rgba(0,0,0,0.15); }
+        .product-card img { height: 250px; object-fit: contain; background: #fff; padding: 10px; border-radius: 12px; }
         .price { color: #28a745; font-weight: bold; font-size: 1.3em; }
         .credit-card { width: 380px; height: 240px; margin: 30px auto; perspective: 1000px; font-family: 'Courier New'; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 16px; padding: 20px; transition: transform 0.6s; }
@@ -153,7 +154,7 @@
     </div>
 </section>
 
-<!-- Privacy Policy (Razorpay-Inspired) -->
+<!-- Privacy Policy -->
 <section id="privacy">
     <div class="container">
         <h2 class="text-center mb-4">Privacy Policy</h2>
@@ -172,7 +173,7 @@
     </div>
 </section>
 
-<!-- Terms of Service (Razorpay-Inspired) -->
+<!-- Terms of Service -->
 <section id="terms" class="bg-light">
     <div class="container">
         <h2 class="text-center mb-4">Terms of Service</h2>
@@ -191,7 +192,7 @@
     </div>
 </section>
 
-<!-- Refund Policy (Razorpay-Inspired) -->
+<!-- Refund Policy -->
 <section id="refund">
     <div class="container">
         <h2 class="text-center mb-4">Refund Policy</h2>
@@ -207,7 +208,7 @@
     </div>
 </section>
 
-<!-- Shipping Policy (Razorpay-Inspired) -->
+<!-- Shipping Policy -->
 <section id="shipping" class="bg-light">
     <div class="container">
         <h2 class="text-center mb-4">Shipping Policy</h2>
@@ -281,11 +282,29 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Products (INR Pricing)
+    // Products with YOUR IMAGES
     const products = [
-        { id: 1, name: 'iPhone 15 Pro', price: 82900, img: 'https://via.placeholder.com/300x200?text=iPhone+15', desc: 'Latest A17 Pro Chip Smartphone' },
-        { id: 2, name: 'MacBook Air M2', price: 109900, img: 'https://via.placeholder.com/300x200?text=MacBook+Air', desc: 'Ultra-Light Laptop with M2 Processor' },
-        { id: 3, name: 'Samsung Galaxy S24', price: 74900, img: 'https://via.placeholder.com/300x200?text=Galaxy+S24', desc: 'AI-Powered Android Flagship' }
+        { 
+            id: 1, 
+            name: 'iPhone 15 Pro', 
+            price: 82900, 
+            img: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1693009283808', 
+            desc: 'Latest A17 Pro Chip Smartphone' 
+        },
+        { 
+            id: 2, 
+            name: 'MacBook Air M2', 
+            price: 109900, 
+            img: 'https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mba15-midnight-config-202503?wid=840&hei=498&fmt=jpeg&qlt=90&.v=eFdJY3RLMFhnTHFUQThNeDRQYUxHcitMc2NHVWpaeURXMUJxL3g2aElBUHc5YVIwb1U2bDJuTk1wdkVlT3RmUk14MXJScFRZN3Y5OWZsRXVrN1k4cFJ3N0IyU1ZoamZKK0JOcmtLTDU1MTg', 
+            desc: 'Ultra-Light Laptop with M2 Processor' 
+        },
+        { 
+            id: 3, 
+            name: 'Samsung Galaxy S24 Ultra', 
+            price: 129999, 
+            img: 'https://m.media-amazon.com/images/I/717Q2swzhBL._SX679_.jpg', 
+            desc: '200MP Camera | S-Pen | AI Features' 
+        }
     ];
     let cart = [];
 
@@ -297,7 +316,7 @@
             col.className = 'col-md-4 mb-4';
             col.innerHTML = `
                 <div class="card product-card h-100">
-                    <img src="${p.img}" class="card-img-top" alt="${p.name}">
+                    <img src="${p.img}" class="card-img-top" alt="${p.name}" loading="lazy">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">${p.name}</h5>
                         <p class="card-text flex-grow-1">${p.desc}</p>
@@ -309,6 +328,11 @@
             grid.appendChild(col);
         });
     }
+
+    // बाकी कोड वही है...
+    // (addToCart, updateCart, search, voucher, pincode, etc.)
+
+    // ... [पूरा JS कोड यहाँ रहेगा - नीचे कॉपी करो]
 
     function addToCart(id) {
         const p = products.find(x => x.id === id);
@@ -347,7 +371,6 @@
         alert('Redirecting to Razorpay Checkout... (Integrate Razorpay SDK here)');
     };
 
-    // Search
     document.getElementById('search-form').onsubmit = e => {
         e.preventDefault();
         const query = document.getElementById('search-input').value.toLowerCase();
@@ -359,7 +382,7 @@
             col.className = 'col-md-4 mb-4';
             col.innerHTML = `
                 <div class="card product-card h-100">
-                    <img src="${p.img}" class="card-img-top" alt="${p.name}">
+                    <img src="${p.img}" class="card-img-top" alt="${p.name}" loading="lazy">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">${p.name}</h5>
                         <p class="card-text flex-grow-1">${p.desc}</p>
@@ -372,7 +395,6 @@
         });
     };
 
-    // Gift Voucher
     document.getElementById('voucher-form').onsubmit = function(e) {
         e.preventDefault();
         const name = document.getElementById('voucher-name').value.trim();
@@ -406,7 +428,6 @@
 
     document.getElementById('print-voucher').onclick = () => window.print();
 
-    // Pincode Check
     function checkPincode() {
         const pin = document.getElementById('pincode-input').value.trim();
         const result = document.getElementById('pincode-result');
@@ -432,7 +453,6 @@
         setTimeout(() => t.remove(), 3000);
     }
 
-    // Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             e.preventDefault();
@@ -442,7 +462,7 @@
 
     window.onload = () => {
         loadProducts();
-        console.log("TechHub Pro Store Loaded!");
+        console.log("TechHub Pro Store Loaded with YOUR Images!");
     };
 </script>
 </body>
